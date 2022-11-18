@@ -1,10 +1,25 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+:root {
+  --white: #ffffff;
+  --faint-black: rgba(0, 0, 0, 0.5);
+  --light-gray: #f5f5f5;
+  --lighter-gray: #f9f9f9;
+  --lightest-gray: #fcfcfc;
+  --input-gray: #f7f7f7;
+  --primary-red: #cc0000;
+  --primary-green: #009a07;
+  --dashboard-active-bg: rgba(204, 0, 0, 0.1);
+  --primary-btn-disabled: rgba(204, 0, 0, 0.6);
+  --usage-bg: #f4f4f4;
+  --exchange-rate-text: #008606;
+  --gray-btn: #cacaca;
+  --gray-text: #52525b;
+  --light-btn: rgba(204, 0, 0, 0.05);
+  --light-btn-border: rgba(204, 0, 0, 0.25);
+  --view-blue: #044DD4;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 a {
   color: inherit;
@@ -13,6 +28,56 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: jakarta;
+}
+
+@layer base {
+  @font-face {
+    font-family: "jakarta";
+    src: url("/fonts/Plus Jakarta Regular.otf");
+  }
+
+  @font-face {
+    font-family: "jakarta-bold";
+    src: url("/fonts/Plus Jakarta Bold.otf");
+  }
+  body {
+    font-family: jakarta;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  ::-webkit-scrollbar {
+    /* width: 4px; */
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgb(250, 250, 250);
+    box-shadow: inset 1px 2px #ccc;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20rem;
+  }
+}
+
+.loader__container {
+  @apply rounded-full mx-auto;
+
+  animation: loader 1s linear infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +88,46 @@ a {
     color: white;
     background: black;
   }
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(250, 250, 250);
+  box-shadow: inset 1px 2px #ccc;
+}
+
+.error {
+  @apply text-primary-red text-[0.75rem];
+}
+
+.auth__input {
+  @apply bg-[#F8FAFC] h-12 pl-4 rounded-md border border-[#CBD5E1] placeholder:text-base !important;
+}
+
+.auth__select__inactive__text {
+  @apply text-black/30 !important;
+}
+
+.contact__file {
+  display: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-transition-delay: 9999999999999999999999999s;
+}
+
+.animation {
+  transition: all 0.8s ease-in-out;
+}
+/* 
+select option:first-child {
+  color: #fcfcfc;
+} */
+
+.index__left {
+  background-image: url("/icons/authentication-background.svg");
+  background-position: center;
+  background-size: cover;
 }
